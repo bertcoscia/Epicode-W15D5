@@ -1,0 +1,14 @@
+Ho scelto di utilizzare una strategia di eredità single table per la classe padre WrittenMedia dal momento che ho solo due sottoclassi
+(Book e Magazine) che sono abbastanza simili tra di loro avendo per lo più attributi comuni.
+Come colonna discriminante ho scelto il tipo di medium (Book o Magazine).
+Per quanto riguarda le relazioni:
+- WrittenMedia - Loan
+M:1 la scelta è dettata dal fatto che ho considerato che un medium possa essere in più prestiti (però non ho preso in considerazione
+il fatto che possano esserci più copie dello stesso medium) e che ho deciso di fare in modo tale che un prestito sia per un solo medium.
+Quindi, nel caso in cui si volessero prendere in prestito più media, bisognerà fare un nuovo prestito per ogni media.
+La chiave esterna viene messa in Loan ed è l'isbn (PK di WrittenMedium) del medium in questione.
+
+- User - Loan
+1:M la scelta in questo caso è simile a quella per la relazione WrittenMedia - Loan, ovvero il fatto che un prestito possa essere legato
+ad un solo utente, mentre un utente può avere più prestiti. Anche in questo caso la chiave esterna è nella tabella Loan,
+ed è il numero della card dell'utente (PK di User) che ha effettuato il prestito.
