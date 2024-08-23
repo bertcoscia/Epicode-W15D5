@@ -4,6 +4,9 @@ import aalbertocoscia.entities.WrittenMedium;
 import aalbertocoscia.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class WrittenMediumDAO {
     private final EntityManager em;
@@ -34,4 +37,11 @@ public class WrittenMediumDAO {
         transaction.commit();
         System.out.println("Element " + found.getIsbn() + " successfully deleted");
     }
+
+    public List<WrittenMedium> findMediaByPubYear(String year) {
+        TypedQuery<WrittenMedium> query = em.createQuery("SELECT m FROM WrittenMedium m WHERE EXTRACT(YEAR FROM m.publicationDate) = :year", WrittenMedium.class);
+        query.setParameter("year", year);
+        return query.getResultList();
+    }
+    
 }
