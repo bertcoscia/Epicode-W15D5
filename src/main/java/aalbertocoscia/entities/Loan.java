@@ -27,17 +27,17 @@ public class Loan {
     private LocalDate estimatedEndDate;
 
     @Column(name = "actual_end_date")
-    private LocalDate acutalEndDate;
+    private LocalDate actualEndDate;
 
     public Loan() {
     }
 
-    public Loan(User user, WrittenMedium writtenMedium, LocalDate startDate, LocalDate acutalEndDate) {
+    public Loan(User user, WrittenMedium writtenMedium, LocalDate startDate, LocalDate actualEndDate) {
         this.user = user;
         this.writtenMedium = writtenMedium;
         this.startDate = startDate;
         this.estimatedEndDate = startDate.plusDays(30);
-        this.acutalEndDate = acutalEndDate;
+        this.actualEndDate = actualEndDate;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Loan {
                 ", writtenMedium=" + writtenMedium +
                 ", startDate=" + startDate +
                 ", estimatedEndDate=" + estimatedEndDate +
-                ", acutalEndDate=" + acutalEndDate +
+                ", actualEndDate=" + actualEndDate +
                 '}';
     }
 }

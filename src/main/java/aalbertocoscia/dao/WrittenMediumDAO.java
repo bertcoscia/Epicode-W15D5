@@ -7,6 +7,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
+import java.util.UUID;
 
 public class WrittenMediumDAO {
     private final EntityManager em;
@@ -39,20 +40,34 @@ public class WrittenMediumDAO {
     }
 
     public List<WrittenMedium> findMediaByPubYear(String year) {
-        TypedQuery<WrittenMedium> query = em.createQuery("SELECT m FROM WrittenMedium m WHERE EXTRACT(YEAR FROM m.publicationDate) = :year", WrittenMedium.class);
+        TypedQuery<WrittenMedium> query = em.createQuery(
+                "SELECT m FROM WrittenMedium m WHERE EXTRACT(YEAR FROM m.publicationDate) = :year",
+                WrittenMedium.class);
         query.setParameter("year", year);
         return query.getResultList();
     }
 
     public List<WrittenMedium> findBooksByAuthor(String author) {
-        TypedQuery<WrittenMedium> query = em.createQuery("SELECT m FROM WrittenMedium m WHERE m.medium_type = 'Book' AND LOWER(m.author) = LOWER(:author)", WrittenMedium.class);
+        TypedQuery<WrittenMedium> query = em.createQuery(
+                "SELECT m FROM WrittenMedium m WHERE m.medium_type = 'Book' AND LOWER(m.author) = LOWER(:author)",
+                WrittenMedium.class);
         query.setParameter("author", author);
         return query.getResultList();
     }
 
     public List<WrittenMedium> findMediaByTitle(String title) {
-        TypedQuery<WrittenMedium> query = em.createQuery("SELECT m FROM WrittenMedium m WHERE LOWER(m.title) LIKE LOWER (:title) ", WrittenMedium.class);
+        TypedQuery<WrittenMedium> query = em.createQuery(
+                "SELECT m FROM WrittenMedium m WHERE LOWER(m.title) LIKE LOWER (:title)",
+                WrittenMedium.class);
         query.setParameter("title", "%" + title + "%");
+        return query.getResultList();
+    }
+
+    public List<WrittenMedium> findMediaInLoanByUser(String userId) {
+        TypedQuery<WrittenMedium> query = em.createQuery(
+                "SELECT m FROM WrittenMedium m JOIN m.loanList l WHERE l.user.cardId = :userId AND l.actualEndDate IS NULL",
+                WrittenMedium.class);
+        query.setParameter("userId", UUID.fromString(userId));
         return query.getResultList();
     }
 

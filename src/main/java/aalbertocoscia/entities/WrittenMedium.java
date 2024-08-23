@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "written_medium")
@@ -22,6 +23,9 @@ public class WrittenMedium {
     protected LocalDate publicationDate;
     @Column(name = "number_pages")
     protected int numPages;
+
+    @OneToMany(mappedBy = "writtenMedium")
+    private List<Loan> loanList;
 
     public WrittenMedium() {
     }
