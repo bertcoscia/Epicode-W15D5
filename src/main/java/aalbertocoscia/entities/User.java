@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue
@@ -57,6 +58,14 @@ public class User {
         this.dateBirth = dateBirth;
     }
 
+    public List<Loan> getLoanList() {
+        return loanList;
+    }
+
+    public void setLoanList(List<Loan> loanList) {
+        this.loanList = loanList;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -64,6 +73,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", dateBirth=" + dateBirth +
+                ", loanList=" + loanList +
                 '}';
     }
 }
