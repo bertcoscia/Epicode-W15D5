@@ -34,6 +34,6 @@ public class UserDAO {
         transaction.begin();
         em.remove(found);
         transaction.commit();
-        System.out.println("User " + found.getCardId() + " successfully removed");
+        System.out.println("User " + found.getCardId() + " successfully deleted");
     }
 }

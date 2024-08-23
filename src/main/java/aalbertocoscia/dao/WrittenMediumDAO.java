@@ -17,12 +17,21 @@ public class WrittenMediumDAO {
         transaction.begin();
         em.persist(wm);
         transaction.commit();
-        System.out.println("Written Medium " + wm.getTitle() + " successfully saved");
+        System.out.println("Element " + wm.getTitle() + " successfully saved");
     }
 
     public WrittenMedium findMediumByIsbn(String isbn) {
         WrittenMedium found = em.find(WrittenMedium.class, isbn);
         if (found == null) throw new NotFoundException(isbn);
         return found;
+    }
+
+    public void findMediumByIsbnAndDelete(String isbn) {
+        WrittenMedium found = findMediumByIsbn(isbn);
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        em.remove(found);
+        transaction.commit();
+        System.out.println("Element " + found.getIsbn() + " successfully deleted");
     }
 }
