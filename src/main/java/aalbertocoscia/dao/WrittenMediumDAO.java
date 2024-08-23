@@ -1,6 +1,7 @@
 package aalbertocoscia.dao;
 
 import aalbertocoscia.entities.WrittenMedium;
+import aalbertocoscia.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
@@ -19,5 +20,9 @@ public class WrittenMediumDAO {
         System.out.println("Written Medium " + wm.getTitle() + " successfully saved");
     }
 
-    
+    public WrittenMedium findMediumByIsbn(String isbn) {
+        WrittenMedium found = em.find(WrittenMedium.class, isbn);
+        if (found == null) throw new NotFoundException(isbn);
+        return found;
+    }
 }
