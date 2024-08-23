@@ -43,5 +43,11 @@ public class WrittenMediumDAO {
         query.setParameter("year", year);
         return query.getResultList();
     }
-    
+
+    public List<WrittenMedium> findBooksByAuthor(String author) {
+        TypedQuery<WrittenMedium> query = em.createQuery("SELECT m FROM WrittenMedium m WHERE m.medium_type = 'Book' AND m.author = :author", WrittenMedium.class);
+        query.setParameter("author", author);
+        return query.getResultList();
+    }
+
 }
