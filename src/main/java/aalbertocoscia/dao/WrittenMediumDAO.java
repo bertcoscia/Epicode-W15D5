@@ -45,8 +45,14 @@ public class WrittenMediumDAO {
     }
 
     public List<WrittenMedium> findBooksByAuthor(String author) {
-        TypedQuery<WrittenMedium> query = em.createQuery("SELECT m FROM WrittenMedium m WHERE m.medium_type = 'Book' AND m.author = :author", WrittenMedium.class);
+        TypedQuery<WrittenMedium> query = em.createQuery("SELECT m FROM WrittenMedium m WHERE m.medium_type = 'Book' AND LOWER(m.author) = LOWER(:author)", WrittenMedium.class);
         query.setParameter("author", author);
+        return query.getResultList();
+    }
+
+    public List<WrittenMedium> findMediaByTitle(String title) {
+        TypedQuery<WrittenMedium> query = em.createQuery("SELECT m FROM WrittenMedium m WHERE LOWER(m.title) LIKE LOWER (:title) ", WrittenMedium.class);
+        query.setParameter("title", "%" + title + "%");
         return query.getResultList();
     }
 

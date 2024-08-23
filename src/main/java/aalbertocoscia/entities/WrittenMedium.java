@@ -12,6 +12,7 @@ import java.util.Date;
 @Table(name = "written_medium")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "medium_type", discriminatorType = DiscriminatorType.STRING)
+
 public class WrittenMedium {
     @Id
     @Column(name = "isbn", unique = true)
