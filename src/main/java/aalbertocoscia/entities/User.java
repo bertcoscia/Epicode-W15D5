@@ -24,10 +24,10 @@ public class User {
     public User() {
     }
 
-    public User(String name, String surname, LocalDate dateBirth) {
+    public User(String name, String surname, String dateBirth) {
         this.name = name;
         this.surname = surname;
-        this.dateBirth = dateBirth;
+        this.dateBirth = LocalDate.parse(dateBirth);
     }
 
     public UUID getCardId() {
@@ -73,7 +73,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", dateBirth=" + dateBirth +
-                ", loanList=" + loanList +
+                //", loanList=" + loanList +
                 '}';
     }
 }

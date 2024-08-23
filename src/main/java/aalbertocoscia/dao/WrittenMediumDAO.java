@@ -49,7 +49,7 @@ public class WrittenMediumDAO {
 
     public List<WrittenMedium> findBooksByAuthor(String author) {
         TypedQuery<WrittenMedium> query = em.createQuery(
-                "SELECT m FROM WrittenMedium m WHERE m.medium_type = 'Book' AND LOWER(m.author) = LOWER(:author)",
+                "SELECT b FROM Book b WHERE LOWER(b.author) = LOWER(:author)",
                 WrittenMedium.class);
         query.setParameter("author", author);
         return query.getResultList();

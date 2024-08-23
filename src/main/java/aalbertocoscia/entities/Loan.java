@@ -32,12 +32,20 @@ public class Loan {
     public Loan() {
     }
 
-    public Loan(User user, WrittenMedium writtenMedium, LocalDate startDate, LocalDate actualEndDate) {
+    public Loan(User user, WrittenMedium writtenMedium, String startDate, String actualEndDate) {
         this.user = user;
         this.writtenMedium = writtenMedium;
-        this.startDate = startDate;
-        this.estimatedEndDate = startDate.plusDays(30);
-        this.actualEndDate = actualEndDate;
+        this.startDate = LocalDate.parse(startDate);
+        this.estimatedEndDate = this.startDate.plusDays(30);
+        this.actualEndDate = LocalDate.parse(actualEndDate);
+    }
+
+    public Loan(User user, WrittenMedium writtenMedium, String startDate) {
+        this.user = user;
+        this.writtenMedium = writtenMedium;
+        this.startDate = LocalDate.parse(startDate);
+        this.estimatedEndDate = this.startDate.plusDays(30);
+        this.actualEndDate = null;
     }
 
     public UUID getId() {
