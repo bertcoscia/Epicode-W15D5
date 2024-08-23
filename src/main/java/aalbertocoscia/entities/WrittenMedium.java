@@ -12,6 +12,7 @@ import java.util.function.Supplier;
 @Entity
 @Table(name = "written_medium")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "medium_type", discriminatorType = DiscriminatorType.STRING)
 public class WrittenMedium {
     @Id
     @Column(name = "isbn")
@@ -84,5 +85,15 @@ public class WrittenMedium {
 
     public void setNumPages(int numPages) {
         this.numPages = numPages;
+    }
+
+    @Override
+    public String toString() {
+        return "WrittenMedium{" +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", publicationDate=" + publicationDate +
+                ", numPages=" + numPages +
+                '}';
     }
 }
