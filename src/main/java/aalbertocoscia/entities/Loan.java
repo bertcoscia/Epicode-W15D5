@@ -40,6 +40,50 @@ public class Loan {
         this.actualEndDate = actualEndDate;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public WrittenMedium getWrittenMedium() {
+        return writtenMedium;
+    }
+
+    public void setWrittenMedium(WrittenMedium writtenMedium) {
+        this.writtenMedium = writtenMedium;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEstimatedEndDate() {
+        return estimatedEndDate;
+    }
+
+    public void setEstimatedEndDate(LocalDate estimatedEndDate) {
+        this.estimatedEndDate = estimatedEndDate;
+    }
+
+    public LocalDate getActualEndDate() {
+        return actualEndDate;
+    }
+
+    public void setActualEndDate(LocalDate actualEndDate) {
+        this.actualEndDate = actualEndDate;
+    }
+
     @Override
     public String toString() {
         return "Loan{" +
