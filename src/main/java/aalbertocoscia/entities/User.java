@@ -1,11 +1,9 @@
 package aalbertocoscia.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +16,9 @@ public class User {
     private String surname;
     @Column(name = "date_birth")
     private LocalDate dateBirth;
+
+    @OneToMany(mappedBy = "user")
+    private List<Loan> loanList;
 
     public User() {
     }
