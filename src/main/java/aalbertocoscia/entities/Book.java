@@ -12,8 +12,8 @@ public class Book extends WrittenMedium {
     public Book() {
     }
 
-    public Book(String title, String author, String genre) {
-        super(title);
+    public Book(String title, int endNum, String author, String genre) {
+        super(title, endNum);
         this.author = author;
         this.genre = genre;
     }

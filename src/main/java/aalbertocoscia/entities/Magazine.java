@@ -15,8 +15,8 @@ public class Magazine extends WrittenMedium {
     public Magazine() {
     }
 
-    public Magazine(String title, Periodicity periodicity) {
-        super(title);
+    public Magazine(String title, int endNum, Periodicity periodicity) {
+        super(title, endNum);
         this.periodicity = periodicity;
     }
 
